@@ -1,8 +1,8 @@
 require 'csv'
 
-namespace :csv do
+namespace :import do
   desc 'Import player demographic data through 2012'
-  task :import_players do |t|
+  task :players do |t|
     # Note that this will update players with new data, if run multiple times.
     # BUT it will NOT delete outdated records.
     puts 'Importing player demographic data...'
@@ -23,7 +23,7 @@ namespace :csv do
   end
 
   desc 'Import player statistics from 2007-2012'
-  task :import_stats do |t|
+  task :stats do |t|
     # Note that this will update existing players' statistics, if run more than once.
     # BUT again, it will not delete outdated records that no longer appear in the CSV.
     puts 'Importing player statistical data...'
@@ -54,6 +54,6 @@ namespace :csv do
   end
 
   desc 'Import all player data'
-  task :import => [:import_players, :import_stats]
+  task :all => [:players, :stats]
 
 end

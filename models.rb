@@ -1,5 +1,8 @@
 class Player < ActiveRecord::Base
   self.primary_key = 'player_id'
+
+  validates :player_id, presence: true
+  validates :player_id, uniqueness: true
 end
 
 class PlayerYear < ActiveRecord::Base
