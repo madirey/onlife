@@ -4,12 +4,12 @@ require 'sinatra/activerecord/rake'
 
 desc 'Run default task'
 task :default do
-  ENV['RACK_ENV'] = 'test'
   Rake::Task['test'].invoke
 end
 
 desc 'Run all project tests'
 Rake::TestTask.new(:test) do |t|
+  ENV['RACK_ENV'] = 'test'
   t.libs << "."
   t.pattern = '*test.rb'
   t.verbose = true
