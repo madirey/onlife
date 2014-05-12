@@ -1,0 +1,18 @@
+development:
+    adapter: sqlite3
+    database: db/onlife-dev.sqlite3
+    pool: 5
+    timeout: 5000
+
+test:
+    adapter: sqlite3
+    database: db/onlife-test.sqlite3
+    pool: 5
+    timeout: 5000
+
+production:
+    adapter: postgresql
+    database: onlife
+    username: <%= ENV['PG_USER'] %>
+    password: <%= ENV['PG_PASS'] %>
+    host: db.onlife.com

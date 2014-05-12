@@ -1,6 +1,7 @@
 ENV['RACK_ENV'] = 'test'
 
-require_relative 'app'
+require './app'
+require 'minitest/autorun'
 require 'test/unit'
 require 'rack/test'
 
