@@ -3,6 +3,11 @@ class Player < ActiveRecord::Base
 
   validates :player_id, presence: true
   validates :player_id, uniqueness: true
+
+  def batting_average(year)
+    year = PlayerYear.find_by year: year
+    year.hits.to_f / year.at_bats
+  end
 end
 
 class PlayerYear < ActiveRecord::Base

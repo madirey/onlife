@@ -15,4 +15,18 @@ describe Player do
     p = Player.new(:player_id => 'slartibartfast')
     p.should_not be_valid
   end
+
+  it 'should correctly calculate batting average' do
+    p = Player.new(:player_id => SecureRandom.hex)
+    p.save!
+    y = PlayerYear.new(:player_id => p.player_id,
+                       :year => 2011,
+                       :league => 'NL',
+                       :team => 'ATL',
+                       :games => 100,
+                       :at_bats => 599,
+                       :hits => 201)
+    y.save!
+    p.batting_average(2011).should be_close(0.336, 0.001)
+  end
 end
