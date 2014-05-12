@@ -8,6 +8,7 @@ end
 class PlayerYear < ActiveRecord::Base
   belongs_to :player
 
+  validates :player_id, presence: true
   validates :year, presence: true
   validates :league, presence: true
   validates :team, presence: true

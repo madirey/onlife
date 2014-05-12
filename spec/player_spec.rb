@@ -3,7 +3,6 @@ require 'securerandom'
 
 describe Player do
   it 'should require a player_id' do
-    puts ENV['RACK_ENV']
     p = Player.new
     p.should_not be_valid
     p = Player.new(:player_id => SecureRandom.hex)

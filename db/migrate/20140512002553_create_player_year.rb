@@ -1,7 +1,7 @@
 class CreatePlayerYear < ActiveRecord::Migration
 
   def up
-    create_table :player_year do |t|
+    create_table :player_years do |t|
       t.references :player
       t.integer :year, :null => false
       t.string :league, :null => false
@@ -20,7 +20,7 @@ class CreatePlayerYear < ActiveRecord::Migration
   end
 
   def down
-    drop_table :player_year
+    drop_table :player_years
   end
 
 end

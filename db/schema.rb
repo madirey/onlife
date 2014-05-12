@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140512002553) do
 
-  create_table "player_year", force: true do |t|
+  create_table "player_years", force: true do |t|
     t.integer "player_id"
     t.integer "year",            null: false
     t.string  "league",          null: false
