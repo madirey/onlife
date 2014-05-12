@@ -29,4 +29,26 @@ describe Player do
     y.save!
     p.batting_average(2011).should be_close(0.336, 0.001)
   end
+
+  # TODO: test edge cases for batting average calculations
+
+  it 'should correctly calculate slugging percentage' do
+    p = Player.new(:player_id => SecureRandom.hex)
+    p.save!
+    y = PlayerYear.new(:player_id => p.player_id,
+                       :year => 2007,
+                       :league => 'NL',
+                       :team => 'CHI',
+                       :games => 120,
+                       :at_bats => 400,
+                       :hits => 105,
+                       :doubles => 20,
+                       :triples => 3,
+                       :home_runs => 24)
+    y.save!
+    p.slugging_percentage(2007).should be_close(0.508, 0.001)
+  end
+
+  # TODO: test edge cases for slugging percentage calculations
+
 end

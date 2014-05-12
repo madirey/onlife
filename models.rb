@@ -8,6 +8,13 @@ class Player < ActiveRecord::Base
     year = PlayerYear.find_by year: year
     year.hits.to_f / year.at_bats
   end
+
+  def slugging_percentage(year)
+    year = PlayerYear.find_by year: year
+    ((year.hits - year.doubles - year.triples - year.home_runs) + (2 * year.doubles) +
+     (3 * year.triples) + (4 * year.home_runs)) / year.at_bats.to_f
+  end
+
 end
 
 class PlayerYear < ActiveRecord::Base
