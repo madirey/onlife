@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512001239) do
+ActiveRecord::Schema.define(version: 20140512002553) do
+
+  create_table "player_year", force: true do |t|
+    t.integer "player_id"
+    t.integer "year",            null: false
+    t.string  "league",          null: false
+    t.string  "team",            null: false
+    t.integer "games",           null: false
+    t.integer "at_bats"
+    t.integer "runs"
+    t.integer "hits"
+    t.integer "doubles"
+    t.integer "triples"
+    t.integer "home_runs"
+    t.integer "rbis"
+    t.integer "stolen_bases"
+    t.integer "caught_stealing"
+  end
 
   create_table "players", id: false, force: true do |t|
     t.string  "player_id",  null: false
