@@ -15,7 +15,5 @@ import:
 	RACK_ENV=development rake db:migrate
 	RACK_ENV=development rake import:all
 
-run_server:
-	ruby app.rb
-
-run_demo: test import run_server
+run_demo: test import
+	RACK_ENV=development rake demo:all

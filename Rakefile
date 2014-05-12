@@ -26,5 +26,18 @@ namespace :test do
 
 end
 
+namespace :demo do
+
+  desc 'Most improved batting average from 2009 to 2010'
+  task :batting_average do
+    PlayerYear.where(year: 2009).each do |stats|
+      puts stats.hits
+    end
+  end
+
+  desc 'Run the entire demo'
+  task :all => [:batting_average]
+end
+
 # Load all rake tasks under lib/tasks directory
 Dir.glob('lib/tasks/*.rake').each { |r| load r }

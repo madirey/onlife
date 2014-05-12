@@ -32,20 +32,20 @@ namespace :import do
                                           :encoding => 'iso-8859-1:UTF-8') do |row|
       player_id = row['playerID']
       if player_id
-        Player.where(:player_id => player_id).first_or_create do |p|
-          p.year = row['year']
-          p.league = row['league']
-          p.team = row['teamID']
-          p.games = row['G']
-          p.at_bats = row['AB']
-          p.runs = row['R']
-          p.hits = row['H']
-          p.doubles = row['2B']
-          p.triples = row['3B']
-          p.home_runs = row['HR']
-          p.rbis = row['RBI']
-          p.stolen_bases = row['SB']
-          p.caught_stealing = row['CS']
+        PlayerYear.where(:player_id => player_id).first_or_create do |stats|
+          stats.year = row['year']
+          stats.league = row['league']
+          stats.team = row['teamID']
+          stats.games = row['G']
+          stats.at_bats = row['AB']
+          stats.runs = row['R']
+          stats.hits = row['H']
+          stats.doubles = row['2B']
+          stats.triples = row['3B']
+          stats.home_runs = row['HR']
+          stats.rbis = row['RBI']
+          stats.stolen_bases = row['SB']
+          stats.caught_stealing = row['CS']
         end
       end
     end
