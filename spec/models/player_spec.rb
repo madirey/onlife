@@ -16,41 +16,17 @@ describe Player do
     player.should_not be_valid
   end
 
-  it 'should correctly calculate batting average' do
-    player = FactoryGirl.create(:player)
-    season = Season.new(:player_id => player.player_id,
-                            :year => 2011,
-                            :league => 'NL',
-                            :team => 'ATL',
-                            :games => 100,
-                            :at_bats => 599,
-                            :hits => 201)
-    season.save!
-    player.batting_average(2011).should be_close(0.336, 0.001)
+  it 'should have one to many seasons' do
+    player = FactoryGirl.create(:player_with_seasons, seasons_count: 1)
+    player.seasons.count.should == 1
+    player = FactoryGirl.create(:player_with_seasons, seasons_count: 3)
+    player.seasons.count.should == 3
   end
 
-  it 'should correctly scope batting average calculations to the relevant year' do
-
+  it 'should correctly scope a season' do
+    player = FactoryGirl.create(:player_with_seasons)
+    season = player.seasons.first
+    player.season(season.year).first.id.should == season.id
   end
-
-  # TODO: test edge cases for batting average calculations
-
-  it 'should correctly calculate slugging percentage' do
-    player = FactoryGirl.create(:player)
-    season = Season.new(:player_id => player.player_id,
-                            :year => 2007,
-                            :league => 'NL',
-                            :team => 'CHI',
-                            :games => 120,
-                            :at_bats => 400,
-                            :hits => 105,
-                            :doubles => 20,
-                            :triples => 3,
-                            :home_runs => 24)
-    season.save!
-    player.slugging_percentage(2007).should be_close(0.508, 0.001)
-  end
-
-  # TODO: test edge cases for slugging percentage calculations
 
 end

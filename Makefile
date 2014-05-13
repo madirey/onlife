@@ -11,7 +11,7 @@ test_app:
 test: reset_db test_models test_app
 
 import:
-	bundle exec "RACK_ENV=development rake db:reset"
+	bundle exec "RACK_ENV=development rake db:drop"
 	bundle exec "RACK_ENV=development rake db:migrate"
 	bundle exec "RACK_ENV=development rake import:all"
 

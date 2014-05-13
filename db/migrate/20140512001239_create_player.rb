@@ -1,8 +1,7 @@
 class CreatePlayer < ActiveRecord::Migration
 
   def change
-    create_table :players, { :primary_key => :player_id,
-                             :id => false } do |t|
+    create_table :players do |t|
       t.string :player_id, :null => false
       t.integer :birth_year
       t.string :first_name
@@ -13,7 +12,6 @@ class CreatePlayer < ActiveRecord::Migration
 
     create_table :player_years do |t|
       t.belongs_to :player
-      t.string :player_id, :null => false
       t.integer :year, :null => false
       t.string :league, :null => false
       t.string :team, :null => false

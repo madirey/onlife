@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20140513124009) do
 
-  create_table "players", id: false, force: true do |t|
+  create_table "players", force: true do |t|
     t.string  "player_id",  null: false
     t.integer "birth_year"
     t.string  "first_name"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140513124009) do
   add_index "players", ["player_id"], name: "index_players_on_player_id", unique: true
 
   create_table "seasons", force: true do |t|
-    t.string  "player_id",       null: false
+    t.integer "player_id"
     t.integer "year",            null: false
     t.string  "league",          null: false
     t.string  "team",            null: false
