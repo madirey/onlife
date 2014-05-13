@@ -3,6 +3,10 @@ class Player < ActiveRecord::Base
 
   validates :player_id, presence: true, uniqueness: true
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   # Returns the player's statistical records for the specified year
   # NOTE: There could be more than one of these, if the player switched
   # teams.
@@ -36,10 +40,6 @@ class Season < ActiveRecord::Base
   def slugging_percentage
     ((hits - doubles - triples - home_runs) + (2 * doubles) +
      (3 * triples) + (4 * home_runs)) / at_bats.to_f
-  end
-
-  def self.triple_crown_winner
-
   end
 
 end

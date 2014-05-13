@@ -6,7 +6,7 @@ namespace :import do
   task :players do |t|
     # Note that this will update players with new data, if run multiple times.
     # BUT it will NOT delete outdated records.
-    puts 'Importing players...'
+    puts 'Importing players (please be patient; this may take a while)...'
 
     CSV.foreach('data/Master-small.csv', :headers => true,
                                          :encoding => 'iso-8859-1:UTF-8') do |row|
@@ -27,7 +27,7 @@ namespace :import do
   task :stats do |t|
     # Note that this will update existing players' statistics, if run more than once.
     # BUT again, it will not delete outdated records that no longer appear in the CSV.
-    puts 'Importing player statistics...'
+    puts 'Importing player statistics (please be patient; this may take a while)...'
 
     CSV.foreach('data/Batting-07-12.csv', :headers => true,
                                           :encoding => 'iso-8859-1:UTF-8') do |row|
