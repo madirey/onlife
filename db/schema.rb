@@ -11,9 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512001239) do
+ActiveRecord::Schema.define(version: 20140513124009) do
 
-  create_table "player_years", force: true do |t|
+  create_table "players", id: false, force: true do |t|
+    t.string  "player_id",  null: false
+    t.integer "birth_year"
+    t.string  "first_name"
+    t.string  "last_name"
+  end
+
+  add_index "players", ["player_id"], name: "index_players_on_player_id", unique: true
+
+  create_table "seasons", force: true do |t|
     t.string  "player_id",       null: false
     t.integer "year",            null: false
     t.string  "league",          null: false
@@ -29,14 +38,5 @@ ActiveRecord::Schema.define(version: 20140512001239) do
     t.integer "stolen_bases"
     t.integer "caught_stealing"
   end
-
-  create_table "players", id: false, force: true do |t|
-    t.string  "player_id",  null: false
-    t.integer "birth_year"
-    t.string  "first_name"
-    t.string  "last_name"
-  end
-
-  add_index "players", ["player_id"], name: "index_players_on_player_id", unique: true
 
 end

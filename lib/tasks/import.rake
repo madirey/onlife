@@ -1,6 +1,7 @@
 require 'csv'
 
 namespace :import do
+
   desc 'Import player demographic data through 2012'
   task :players do |t|
     # Note that this will update players with new data, if run multiple times.
@@ -31,7 +32,7 @@ namespace :import do
     CSV.foreach('data/Batting-07-12.csv', :headers => true,
                                           :encoding => 'iso-8859-1:UTF-8') do |row|
 
-      # Below attributes represent a "unique" PlayerYear record
+      # Below attributes represent a "unique" Season record
       player_id = row['playerID']
       year = row['yearID'].to_i
       league = row['league']
@@ -39,10 +40,10 @@ namespace :import do
 
       # If we have enough data to identify a unique entry, then record it
       if player_id && year && league && team
-        PlayerYear.where(:player_id => player_id,
-                         :year => year,
-                         :league => league,
-                         :team => team).first_or_create! do |stats|
+        Season.where(:player_id => player_id,
+                     :year => year,
+                     :league => league,
+                     :team => team).first_or_create! do |stats|
 
           # Gather player stats for this entry
           stats.games = row['G'].to_i

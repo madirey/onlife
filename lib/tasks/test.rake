@@ -1,4 +1,7 @@
 # Rake tasks for OnLife assignment tests
+require 'rake/testtask'
+require 'rspec/core/rake_task'
+require 'sinatra/activerecord/rake'
 
 namespace :test do
 
@@ -7,7 +10,6 @@ namespace :test do
 
   desc 'Run application tests'
   Rake::TestTask.new(:app) do |t|
-    Rake::Task['prepare']
     t.libs << "."
     t.pattern = '*test.rb'
     t.verbose = true

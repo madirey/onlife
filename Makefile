@@ -1,5 +1,5 @@
 reset_db:
-	bundle exec "RACK_ENV=test rake db:reset"
+	bundle exec "RACK_ENV=test rake db:drop"
 	bundle exec "RACK_ENV=test rake db:migrate"
 
 test_models:

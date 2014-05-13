@@ -18,7 +18,7 @@ describe Player do
 
   it 'should correctly calculate batting average' do
     player = FactoryGirl.create(:player)
-    season = PlayerYear.new(:player_id => player.player_id,
+    season = Season.new(:player_id => player.player_id,
                             :year => 2011,
                             :league => 'NL',
                             :team => 'ATL',
@@ -37,7 +37,7 @@ describe Player do
 
   it 'should correctly calculate slugging percentage' do
     player = FactoryGirl.create(:player)
-    season = PlayerYear.new(:player_id => player.player_id,
+    season = Season.new(:player_id => player.player_id,
                             :year => 2007,
                             :league => 'NL',
                             :team => 'CHI',
