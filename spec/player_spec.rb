@@ -30,6 +30,10 @@ describe Player do
     p.batting_average(2011).should be_close(0.336, 0.001)
   end
 
+  it 'should correctly scope batting average calculations to the relevant year' do
+
+  end
+
   # TODO: test edge cases for batting average calculations
 
   it 'should correctly calculate slugging percentage' do
