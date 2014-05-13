@@ -11,7 +11,7 @@ namespace :import do
                                          :encoding => 'iso-8859-1:UTF-8') do |row|
       player_id = row['playerID']
       if player_id
-        Player.where(:player_id => player_id).first_or_create do |p|
+        Player.where(:player_id => player_id).first_or_create! do |p|
           p.birth_year = row['birthYear']
           p.first_name = row['nameFirst']
           p.last_name = row['nameLast']
@@ -30,22 +30,32 @@ namespace :import do
 
     CSV.foreach('data/Batting-07-12.csv', :headers => true,
                                           :encoding => 'iso-8859-1:UTF-8') do |row|
+
+      # Below attributes represent a "unique" PlayerYear record
       player_id = row['playerID']
-      if player_id
-        PlayerYear.where(:player_id => player_id).first_or_create do |stats|
-          stats.year = row['year']
-          stats.league = row['league']
-          stats.team = row['teamID']
-          stats.games = row['G']
-          stats.at_bats = row['AB']
-          stats.runs = row['R']
-          stats.hits = row['H']
-          stats.doubles = row['2B']
-          stats.triples = row['3B']
-          stats.home_runs = row['HR']
-          stats.rbis = row['RBI']
-          stats.stolen_bases = row['SB']
-          stats.caught_stealing = row['CS']
+      year = row['yearID'].to_i
+      league = row['league']
+      team = row['teamID']
+
+      # If we have enough data to identify a unique entry, then record it
+      if player_id && year && league && team
+        PlayerYear.where(:player_id => player_id,
+                         :year => year,
+                         :league => league,
+                         :team => team).first_or_create! do |stats|
+
+          # Gather player stats for this entry
+          stats.games = row['G'].to_i
+          stats.at_bats = row['AB'].to_i
+          stats.runs = row['R'].to_i
+          stats.hits = row['H'].to_i
+          stats.doubles = row['2B'].to_i
+          stats.triples = row['3B'].to_i
+          stats.home_runs = row['HR'].to_i
+          stats.rbis = row['RBI'].to_i
+          stats.stolen_bases = row['SB'].to_i
+          stats.caught_stealing = row['CS'].to_i
+
         end
       end
     end
