@@ -3,10 +3,6 @@ require 'rake/testtask'
 require 'rspec/core/rake_task'
 require 'sinatra/activerecord/rake'
 
-desc 'Run default task'
-task :default do
-  Rake::Task['test'].invoke
-end
 
 namespace :test do
 

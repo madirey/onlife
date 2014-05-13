@@ -3,13 +3,10 @@ onlife
 
 OnLife coding exercise.
 
-running the tests
-=================
-1. Run `make test`
-
-running the code
+running the demo
 ================
 1. Run `bundle install`
-2. Run XXXX to print the output.
+2. Run `make test` to check that all the tests pass.
+3. Run `make run_demo` to run the demo.
 
 qed
