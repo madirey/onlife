@@ -1,4 +1,6 @@
 class Player < ActiveRecord::Base
+  has_many :player_years, :foreign_key => 'player_id'
+
   self.primary_key = 'player_id'
 
   validates :player_id, presence: true
@@ -18,7 +20,7 @@ class Player < ActiveRecord::Base
 end
 
 class PlayerYear < ActiveRecord::Base
-  belongs_to :player
+  belongs_to :player, :foreign_key => 'player_id'
 
   validates :player_id, presence: true
   validates :year, presence: true

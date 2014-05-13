@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512002553) do
+ActiveRecord::Schema.define(version: 20140512001239) do
 
   create_table "player_years", force: true do |t|
-    t.integer "player_id"
+    t.string  "player_id",       null: false
     t.integer "year",            null: false
     t.string  "league",          null: false
     t.string  "team",            null: false
-    t.integer "games",           null: false
+    t.integer "games"
     t.integer "at_bats"
     t.integer "runs"
     t.integer "hits"
@@ -36,5 +36,7 @@ ActiveRecord::Schema.define(version: 20140512002553) do
     t.string  "first_name"
     t.string  "last_name"
   end
+
+  add_index "players", ["player_id"], name: "index_players_on_player_id", unique: true
 
 end
